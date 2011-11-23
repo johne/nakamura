@@ -13,6 +13,15 @@ public interface UserFinder {
   Set<String> findUsersByName(String name) throws Exception;
   
   /**
+   * find all the users with the specified email address
+   * 
+   * @param email
+   * @return Set of userIds
+   * @throws Exception
+   */
+  Set<String> findUsersByEmail(String email) throws Exception;
+  
+  /**
    * 
    * @param name
    * @return true if one or more users by that name found
