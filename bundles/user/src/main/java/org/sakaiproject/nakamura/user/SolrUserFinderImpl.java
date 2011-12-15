@@ -44,6 +44,7 @@ public class SolrUserFinderImpl implements UserFinder {
    * @see org.sakaiproject.nakamura.api.user.UserFinder#findUsersByEmail(java.lang.String)
    */
   public Set<String> findUsersByEmail(String email) throws Exception {
+    // return findUsersByFields(new String[] {"email", "newemail"}, email);
     return findUsersByField("email", email);
   }
 
@@ -76,6 +77,35 @@ public class SolrUserFinderImpl implements UserFinder {
       }
     }
     LOGGER.debug("found these users by " + fieldName + ": " + userIds);
+    return userIds;
+  }
+
+  protected Set<String> findUsersByFields(String[] fieldNames, String fieldValue) throws Exception {
+    Set<String> userIds = new HashSet<String>();
+    SolrServer solrServer = solrSearchService.getServer();
+    StringBuilder queryString = new StringBuilder("resourceType:authorizable AND type:u AND (");
+    
+    boolean first = true;
+    for(String fieldName : fieldNames) {
+      if (!first) {
+        queryString.append(" OR ");
+      }
+      
+      queryString.append(fieldName + ":" + fieldValue);
+      first = false;
+    }
+    
+    queryString.append(")");
+    
+    SolrQuery solrQuery = new SolrQuery(queryString.toString());
+    QueryResponse queryResponse = solrServer.query(solrQuery);
+    SolrDocumentList results = queryResponse.getResults();
+    for (SolrDocument solrDocument : results) {
+      if (solrDocument.containsKey("id")) {
+        userIds.add((String) solrDocument.getFieldValue("id"));
+      }
+    }
+    LOGGER.debug("found these users by " + fieldNames + ": " + userIds);
     return userIds;
   }
 

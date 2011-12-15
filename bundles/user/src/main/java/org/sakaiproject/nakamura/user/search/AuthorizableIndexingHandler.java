@@ -76,6 +76,7 @@ public class AuthorizableIndexingHandler implements IndexingHandler {
     builder.put(UserConstants.USER_FIRSTNAME_PROPERTY, "firstName");
     builder.put(UserConstants.USER_LASTNAME_PROPERTY, "lastName");
     builder.put(UserConstants.USER_EMAIL_PROPERTY, "email");
+    builder.put(UserConstants.USER_NEW_EMAIL_PROPERTY, "newemail");
     builder.put("type", "type");
     builder.put("sakai:tag-uuid", "taguuid");
     builder.put("sakai:tags", "tag");
