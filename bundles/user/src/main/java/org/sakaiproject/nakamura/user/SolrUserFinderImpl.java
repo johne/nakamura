@@ -33,19 +33,18 @@ public class SolrUserFinderImpl implements UserFinder {
    * @see org.sakaiproject.nakamura.api.user.UserFinder#findUsersByName(java.lang.String)
    */
   public Set<String> findUsersByName(String name) throws Exception {
-    Set<String> userIds = new HashSet<String>();
-    SolrServer solrServer = solrSearchService.getServer();
-    String queryString = "resourceType:authorizable AND type:u AND name:" + name;
-    SolrQuery solrQuery = new SolrQuery(queryString);
-    QueryResponse queryResponse = solrServer.query(solrQuery);
-    SolrDocumentList results = queryResponse.getResults();
-    for (SolrDocument solrDocument : results) {
-      if (solrDocument.containsKey("id")) {
-        userIds.add((String) solrDocument.getFieldValue("id"));
-      }
-    }
-    LOGGER.debug("found these users by name: " + userIds);
-    return userIds;
+    return findUsersByField("name", name);
+  }
+
+  /**
+   * do a case insensitive solr search for user's email which is indexed as a
+   * case-insensitive solr text field in AuthorizableIndexingHandler
+   * {@inheritDoc}
+   * 
+   * @see org.sakaiproject.nakamura.api.user.UserFinder#findUsersByEmail(java.lang.String)
+   */
+  public Set<String> findUsersByEmail(String email) throws Exception {
+    return findUsersByField("email", email);
   }
 
   /**
@@ -62,6 +61,22 @@ public class SolrUserFinderImpl implements UserFinder {
     }
     LOGGER.debug("user with name " + name + " exists: " + userExists);
     return userExists;
+  }
+  
+  protected Set<String> findUsersByField(String fieldName, String fieldValue) throws Exception {
+    Set<String> userIds = new HashSet<String>();
+    SolrServer solrServer = solrSearchService.getServer();
+    String queryString = "resourceType:authorizable AND type:u AND " + fieldName + ":" + fieldValue;
+    SolrQuery solrQuery = new SolrQuery(queryString);
+    QueryResponse queryResponse = solrServer.query(solrQuery);
+    SolrDocumentList results = queryResponse.getResults();
+    for (SolrDocument solrDocument : results) {
+      if (solrDocument.containsKey("id")) {
+        userIds.add((String) solrDocument.getFieldValue("id"));
+      }
+    }
+    LOGGER.debug("found these users by " + fieldName + ": " + userIds);
+    return userIds;
   }
 
 }
