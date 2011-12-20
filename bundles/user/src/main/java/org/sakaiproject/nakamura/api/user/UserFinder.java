@@ -29,4 +29,12 @@ public interface UserFinder {
    * @throws Exception
    */
   boolean userExists(String name) throws Exception;
+  
+  /**
+   * 
+   * @param email
+   * @return true if there is someone with this email
+   * @throws Exception
+   */
+  boolean userWithEmailExists(String email) throws Exception;
 }

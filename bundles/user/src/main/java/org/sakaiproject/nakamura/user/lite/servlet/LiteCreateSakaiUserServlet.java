@@ -330,7 +330,7 @@ public class LiteCreateSakaiUserServlet extends LiteAbstractUserPostServlet {
           
           String email = request.getParameter("email");
           
-          if (email != null && userFinder.findUsersByEmail(email).size() == 0) {
+          if (email != null && !userFinder.userWithEmailExists(email)) {
             if (authorizableManager.createUser(principalName, principalName,
                 digestPassword(pwd), null)) {
               log.info("User {} created", principalName);

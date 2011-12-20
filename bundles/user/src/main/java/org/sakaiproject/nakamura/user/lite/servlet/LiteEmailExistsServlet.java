@@ -22,15 +22,20 @@ import org.sakaiproject.nakamura.api.doc.ServiceMethod;
 import org.sakaiproject.nakamura.api.doc.ServiceParameter;
 import org.sakaiproject.nakamura.api.doc.ServiceResponse;
 import org.sakaiproject.nakamura.api.doc.ServiceSelector;
+import org.sakaiproject.nakamura.api.lite.StorageClientUtils;
+import org.sakaiproject.nakamura.api.lite.authorizable.Authorizable;
+import org.sakaiproject.nakamura.api.lite.authorizable.AuthorizableManager;
+import org.sakaiproject.nakamura.api.lite.authorizable.User;
+import org.sakaiproject.nakamura.api.lite.Session;
 import org.sakaiproject.nakamura.api.user.UserFinder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
-import javax.jcr.Session;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletResponse;
 
@@ -76,7 +81,6 @@ public class LiteEmailExistsServlet extends SlingSafeMethodsServlet {
     throws ServletException, IOException {
     long start = System.currentTimeMillis();
     try {
-      Session session = request.getResourceResolver().adaptTo(Session.class);
       RequestParameter idParam = request.getRequestParameter("email");
       if (idParam == null) {
         response.sendError(HttpServletResponse.SC_BAD_REQUEST, "This request must have a 'email' parameter.");
@@ -90,9 +94,8 @@ public class LiteEmailExistsServlet extends SlingSafeMethodsServlet {
       String email = idParam.getString();
       LOGGER.debug("Checking for existence of {}", email);
       // finding by email
-      Set<String> users = userFinder.findUsersByEmail(email);
       
-      if (users != null && users.size() > 0) {
+      if (userFinder.userWithEmailExists(email)) {
         response.setStatus(HttpServletResponse.SC_NO_CONTENT);
       } else {
         response.sendError(HttpServletResponse.SC_NOT_FOUND);

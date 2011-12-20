@@ -8,13 +8,21 @@ import org.apache.solr.client.solrj.SolrServer;
 import org.apache.solr.client.solrj.response.QueryResponse;
 import org.apache.solr.common.SolrDocument;
 import org.apache.solr.common.SolrDocumentList;
+import org.sakaiproject.nakamura.api.lite.Repository;
+import org.sakaiproject.nakamura.api.lite.Session;
+import org.sakaiproject.nakamura.api.lite.authorizable.Authorizable;
+import org.sakaiproject.nakamura.api.lite.authorizable.AuthorizableManager;
+import org.sakaiproject.nakamura.api.lite.authorizable.User;
 import org.sakaiproject.nakamura.api.solr.SolrServerService;
 import org.sakaiproject.nakamura.api.user.UserFinder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
+
+import javax.servlet.http.HttpServletResponse;
 
 @Component(immediate = true, metatype = true, label = "SolrUserFinder", description = "Find users using the Solr index")
 @Service
@@ -22,6 +30,9 @@ public class SolrUserFinderImpl implements UserFinder {
 
   @Reference
   protected SolrServerService solrSearchService;
+  
+  @Reference
+  protected Repository repository;
 
   private static final Logger LOGGER = LoggerFactory.getLogger(SolrUserFinderImpl.class);
 
@@ -44,7 +55,6 @@ public class SolrUserFinderImpl implements UserFinder {
    * @see org.sakaiproject.nakamura.api.user.UserFinder#findUsersByEmail(java.lang.String)
    */
   public Set<String> findUsersByEmail(String email) throws Exception {
-    // return findUsersByFields(new String[] {"email", "newemail"}, email);
     return findUsersByField("email", email);
   }
 
@@ -107,6 +117,22 @@ public class SolrUserFinderImpl implements UserFinder {
     }
     LOGGER.debug("found these users by " + fieldNames + ": " + userIds);
     return userIds;
+  }
+
+  public boolean userWithEmailExists(String email) throws Exception {
+    Session session = repository.login();
+    
+    AuthorizableManager authm = session.getAuthorizableManager();
+    
+    Iterator<Authorizable> emailUser = authm.findAuthorizable("email", email, User.class);
+
+    Iterator<Authorizable> newEmailUser = authm.findAuthorizable("newemail", email, User.class);
+    
+    if (emailUser.hasNext() || newEmailUser.hasNext()) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
 }
