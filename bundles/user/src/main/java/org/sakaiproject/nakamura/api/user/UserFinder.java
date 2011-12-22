@@ -37,4 +37,12 @@ public interface UserFinder {
    * @throws Exception
    */
   boolean userWithEmailExists(String email) throws Exception;
+  
+  /**
+   * 
+   * @return set with all users
+   * @throws Exception
+   */
+  Set<String> allUsers() throws Exception;
+  
 }

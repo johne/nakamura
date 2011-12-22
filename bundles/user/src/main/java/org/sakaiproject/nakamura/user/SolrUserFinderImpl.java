@@ -135,4 +135,21 @@ public class SolrUserFinderImpl implements UserFinder {
     }
   }
 
+  public Set<String> allUsers() throws Exception {
+    Set<String> userIds = new HashSet<String>();
+    SolrServer solrServer = solrSearchService.getServer();
+    StringBuilder queryString = new StringBuilder("resourceType:authorizable AND type:u");
+    
+    SolrQuery solrQuery = new SolrQuery(queryString.toString());
+    QueryResponse queryResponse = solrServer.query(solrQuery);
+    SolrDocumentList results = queryResponse.getResults();
+    for (SolrDocument solrDocument : results) {
+      if (solrDocument.containsKey("id")) {
+        userIds.add((String) solrDocument.getFieldValue("id"));
+      }
+    }
+    
+    return userIds;
+  }
+
 }
