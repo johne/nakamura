@@ -679,6 +679,21 @@ KERN-1187
     </bundle>
     <bundle>
       <groupId>com.rsmart</groupId>
+      <artifactId>email-verify</artifactId>
+      <version>0.1</version>
+    </bundle>
+    <bundle>
+      <groupId>com.rsmart</groupId>
+      <artifactId>lost-pwd</artifactId>
+      <version>0.1</version>
+    </bundle>
+    <bundle>
+      <groupId>com.rsmart</groupId>
+      <artifactId>upgrades</artifactId>
+      <version>0.1</version>
+    </bundle>
+    <bundle>
+      <groupId>com.rsmart</groupId>
       <artifactId>com.rsmart.nakamura.registration</artifactId>
       <version>1.0.2-M4</version>
     </bundle>
