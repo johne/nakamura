@@ -1,6 +1,6 @@
 {
     "sling:resourceType": "sakai/proxy",
-    "sakai:request-proxy-endpoint": "http://www.slideshare.net/api/2/get_slideshow?${keyHash}&slideshow_url=${slideshow_url}",
+    "sakai:request-proxy-endpoint": "http://www.slideshare.net/api/2/get_slideshow?api_key=${apiKey}&ts=${ts}&hash=${keyHash}&slideshow_url=${slideshow_url}",
     "sakai:preprocessor": "slideshare",
     "sakai:request-proxy-method": "GET",
     "sakai:title": "Get a slideshow",

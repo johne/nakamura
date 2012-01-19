@@ -20,6 +20,7 @@ module OaeImport
         attr_accessor :updated
         attr_accessor :exceptional
         attr_accessor :total
+        attr_accessor :numrow
         attr_accessor :exceptions        
         
         
@@ -110,20 +111,26 @@ module OaeImport
             @exceptional = 0
             @created = 0
             @updated = 0
+            @numrow = 0
             
             skip = skipFirstRow()
             
             CSV.open(csvFile, 'r') do |row|
+                @numrow += 1
                 if (!skip)
                   if row[0] != nil
+                    trimRow(row)
                     @total += 1
                     begin 
+                        if expectedColumns() > 0 && row.length != expectedColumns()
+                          raise "invalid number of columns #{row.length} expecting #{expectedColumns()}"
+                        end
                         processRow(row)
                     rescue Exception => e
                         @exceptional += 1
                         @log.warn(e.message)
                         @log.warn(e.backtrace)
-                        exceptions << e.message
+                        exceptions << "Line #{numrow} had error: #{e.message}"
                         exceptions << "\n"
                     end
                   end
@@ -135,6 +142,14 @@ module OaeImport
             report << exceptions
 
             sendReport(report)
+        end
+        
+        def trimRow(row) 
+          row.each_with_index {
+              |value, index|
+
+              row[index].strip!
+          }
         end
         
         def processRow(row)
@@ -151,6 +166,10 @@ module OaeImport
           else 
             return true
           end
+        end
+        
+        def expectedColumns() 
+          return 0
         end
         
     end

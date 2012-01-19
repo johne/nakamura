@@ -104,6 +104,10 @@ class SisUserUploader < OaeImportBase
       return skipFirstRowConfig("users.csv")
     end
     
+    def expectedColumns() 
+      return 7 + customProperties.count
+    end
+    
 end
 
 

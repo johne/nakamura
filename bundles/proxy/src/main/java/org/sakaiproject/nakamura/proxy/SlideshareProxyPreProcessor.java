@@ -61,6 +61,8 @@ public class SlideshareProxyPreProcessor implements ProxyPreProcessor {
       String hash = StringUtils.sha1Hash(SHAREDSECRET + ts);
       String keyHash = "api_key=" + APIKEY + "&ts=" + ts + "&hash=" + hash;
       templateParams.put("keyHash", keyHash);
+      templateParams.put("apiKey", APIKEY);
+      templateParams.put("ts", ts);
     } catch (UnsupportedEncodingException e) {
       LOGGER.error("Hashing error", e);
     } catch (NoSuchAlgorithmException e) {

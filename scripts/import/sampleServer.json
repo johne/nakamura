@@ -1,6 +1,6 @@
 {
   "password" : "admin",
-  "reportEmail" : "oae2@dovevalleyapps.com",
+  "reportEmail" : "testingimport@rsmart.com",
   "serverUrl" : "http://localhost:8080/",
   "users.csv" : {
     "allowUpdate" : false,

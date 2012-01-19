@@ -1,6 +1,14 @@
 rSmart Nakamura Changelog
 =========================
 
+release/acad-1.1.0-M1-20120116
+------------------------------
+* NOJIRA release/acad-1.1.0-M1-20120116 60f95a9
+* ACAD-100 Fix the slideshare API integration 624286d
+* ACAD-452 ACAD-553 ACAD-569 fixed various things in the user import process 63b936f
+* ACAD-496 corrected bracketing of query after merging changes from usergroups.json d0cd3f9
+* ACAD-496 altered search to fit new template syntax 5c13eb9
+
 acad-1.1.0-M1-QA1-20120105
 --------------------------
 * NOJIRA amended changelog for QA tag pre-acad-1.1.0-M1-20120105 74b3f41
