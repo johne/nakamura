@@ -12,5 +12,8 @@
   },
   "remove-users.csv" : {
     "skipHeaderRow" : false
+  },
+  "worlds.csv" : {
+    "skipHeaderRow" : true
   }
 }

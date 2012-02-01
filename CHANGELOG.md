@@ -1,7 +1,33 @@
 rSmart Nakamura Changelog
 =========================
 
-release/acad-1.1.0-M1-20120116
+1.1.0-M1-20120130
+-------------------------
+* NOJIRA release/1.1.0-M1-20120130 7e65741
+* NOJIRA fix usage message (cherry picked from commit 38fd866f2d86af4e2bfd4a6bcdc66f8f65260735) fa30807
+* KERN-2482 Fix backwards compatibility to ruby 1.8.7 (cherry picked from commit c786146101f18d839f416770cafaa3f599192c5b) 63614d3
+* KERN-2462 Converted code.py term extraction service to the ruby library that implements the same algorithm. (cherry picked from commit 6e8
+* NOJIRA Fixing up the import scripts - Changed the way row values are trimmed - Removed excess whitespace - Ruby-ified some of the syntax -
+* ACAD-554 create provision-worlds.rb - Modified import-base to fix some errors I was seeing in various Ruby versions - Changed the require 
+* ACAD-612 blank participant list in Preview course KERN-2434 Handle unfound group member. (cherry picked from commit 10e22a89d9a63bcbdfedf6
+* ACAD-653 migrate sakai:category property from 'courses' to 'course' fbeadc6
+* ACAD-100 Fix the slideshare API integration a01c184
+* ACAD-556 Allow users who were rejected from joining a group make that request again 8a5a792
+* ACAD-554 create provision-worlds.rb - Modified import-base to fix some errors I was seeing in various Ruby versions - Changed the require 
+* ACAD-273 added some debugging from Erik Froese for failed files 97694b8
+* ACAD-273 undo this change as failing content is preventing queue from further processing. cccaef4
+
+acad-1.1.0-M1-20120124
+----------------------
+* NOJIRA release/acad-1.1.0-M1-20120124 d8e2f6a
+* ACAD-623 changed groupId for new rSmart solr bundle dep Evaluate Ray Davis Stopgap for Reindexing Errors 4792f9e
+* ACAD-623 Changed dependency to refer to Solr 1.3.1, which fixes reindex rollback issue 089c4dd
+* NOJIRA rev'd mysql driver version (no other change) a6c4fd7
+* Revert "NOJIRA changed base pom version back to 1.1 per Duffy" 50e2dcb
+* NOJIRA changed base pom version back to 1.1 per Duffy 11d2b16
+* ACAD-628 Merge in sparse 1.3 with sparse index fix for OIPP 97fb124
+
+acad-1.1.0-M1-20120116
 ------------------------------
 * NOJIRA release/acad-1.1.0-M1-20120116 60f95a9
 * ACAD-100 Fix the slideshare API integration 624286d

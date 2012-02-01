@@ -1,0 +1,5 @@
+source :rubygems
+
+gem 'nakamura'
+gem 'pony'
+gem 'json'

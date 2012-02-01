@@ -8,4 +8,5 @@ group :preview_processor do
   gem "rmagick"
   gem "getopt"
   gem "daemons"
+  gem "term-extract"
 end

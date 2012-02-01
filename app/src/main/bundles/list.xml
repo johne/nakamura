@@ -246,7 +246,7 @@ KERN-1187
         <bundle>
             <groupId>org.sakaiproject.nakamura</groupId>
             <artifactId>org.sakaiproject.nakamura.mysqljdbc</artifactId>
-            <version>1.0.2</version>
+            <version>1.1</version>
         </bundle>
     </startLevel>
     <startLevel level="5">
@@ -387,7 +387,7 @@ KERN-1187
 <!-- Start of Sakai Bundles, add new Sakai bundles below this point at the appropriate run level  -->
    <startLevel level="1">
     <bundle>
-      <groupId>org.sakaiproject.nakamura</groupId>
+      <groupId>com.rsmart</groupId>
       <artifactId>org.sakaiproject.nakamura.core</artifactId>
       <version>1.3.1</version>
     </bundle>
@@ -520,9 +520,9 @@ KERN-1187
    </startLevel>
    <startLevel level="15" >
     <bundle>
-      <groupId>org.sakaiproject.nakamura</groupId>
+      <groupId>com.rsmart</groupId>
       <artifactId>org.sakaiproject.nakamura.solr</artifactId>
-      <version>1.3-20111212</version>
+      <version>1.3.1</version>
     </bundle>
     <bundle>
       <groupId>org.sakaiproject.nakamura</groupId>
@@ -737,7 +737,7 @@ KERN-1187
     <bundle>
       <groupId>com.rsmart</groupId>
       <artifactId>hubspot-rest</artifactId>
-      <version>1.1.0-M1-20120116</version>
+      <version>1.1.0-M1-20120130</version>
     </bundle>
     <bundle>
       <groupId>com.rsmart</groupId>
@@ -757,12 +757,12 @@ KERN-1187
     <bundle>
       <groupId>com.rsmart</groupId>
       <artifactId>com.rsmart.nakamura.registration</artifactId>
-      <version>1.1.0-M1-20120116</version>
+      <version>1.1.0-M1-20120130</version>
     </bundle>
     <bundle>
       <groupId>com.rsmart</groupId>
       <artifactId>acceptterms</artifactId>
-      <version>1.1.0-M1-20120116</version>
+      <version>1.1.0-M1-20120130</version>
     </bundle>
    </startLevel>
 </bundles>
