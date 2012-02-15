@@ -21,6 +21,7 @@ module OaeImport
         attr_accessor :exceptional
         attr_accessor :total
         attr_accessor :exceptions
+        attr_accessor :infoFile
 
 
         def createManager(server)
@@ -80,6 +81,7 @@ module OaeImport
             begin
 
                 if serverInfoFile != nil
+                    @infoFile = serverInfoFile;
                     @server = processServerProps(serverInfoFile)
                 else
                     @server = Sling.new()
@@ -134,7 +136,8 @@ module OaeImport
               skip = false
             end
 
-            report = "created #{created}\n#{updatedLabel} #{updated}\nfailed #{exceptional}\ntotal #{total}\n\n"
+            report = "processed file #{csvFile} with config #{@infoFile}\n\n"
+            report << "created #{created}\n#{updatedLabel} #{updated}\nfailed #{exceptional}\ntotal #{total}\n\n"
             report << exceptions
 
             sendReport(report)
