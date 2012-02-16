@@ -135,12 +135,20 @@ module OaeImport
               end
               skip = false
             end
-
+            
+            if (@exceptional == 0)
+              postProcess()
+            end
+            
             report = "processed file #{csvFile} with config #{@infoFile}\n\n"
             report << "created #{created}\n#{updatedLabel} #{updated}\nfailed #{exceptional}\ntotal #{total}\n\n"
             report << exceptions
 
             sendReport(report)
+        end
+        
+        def postProcess()
+          # do nothing... override if needed
         end
 
         def trimRow(row)

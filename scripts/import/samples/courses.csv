@@ -1,6 +1,6 @@
-W11,10_sis_testing_001b,,Testing Course 101,SIS Testing,SIS Testing,0,,course,,,grouped
-Sp11,10-sis-testing-002b,,Testing Course 201,SIS Testing,SIS Testing,0,,course,,,grouped
-Sp11,10-sis-testing-022b,,Testing Course 202,SIS Testing,SIS Testing,0,,course,,,grouped
-Sp11,10-sis-testing-220b,,Testing Portfolio 203,SIS Testing,SIS Testing,0,,portfolio,,,grouped
-Sp11,10-sis-testing-222b,,Testing Project 204,SIS Testing,SIS Testing,0,,project,,,grouped
-Su11,10-sis-testing-003b,,Testing Course 301,SIS Testing,SIS Testing,0,,course,,,not-grouped
+W11,10-sis-testing-001,,Testing Course 101,SIS Testing,SIS Testing,0,,course,,,not-grouped
+Sp11,10-sis-testing-002,,Testing Course 201,SIS Testing,SIS Testing,0,,course,,,grouped
+Sp11,10-sis-testing-022,,Testing Course 202,SIS Testing,SIS Testing,0,,course,,,grouped
+Sp11,10-sis-testing-220,,Testing Portfolio 203,SIS Testing,SIS Testing,0,,portfolio,,,grouped
+Sp11,10-sis-testing-222,,Testing Project 204,SIS Testing,SIS Testing,0,,project,,,grouped
+Su11,10-sis-testing-003,,Testing Course 301,SIS Testing,SIS Testing,0,,course,,,not-grouped

@@ -7,11 +7,8 @@
   "serverUrl" : "http://localhost:8080/",
   "users.csv" : {
     "allowUpdate" : false,
-    "customProperties" : [
-      "testProp1",
-      "testProp2"
-    ],
-    "skipHeaderRow" : true
+    "skipHeaderRow" : true,
+    "customProperties": []
   },
   "worlds.csv" : {
     "customProperties" : [
@@ -23,6 +20,24 @@
       "course" : "/var/templates/worlds/course/basic-course",
       "portfolio" : "/var/templates/worlds/group/simple-group",
       "project" : "/var/templates/worlds/research/research-project"
+    }
+  },
+  "members.csv" : {
+    "skipHeaderRow" : false,
+    "roleMaps" : {
+      "course": {
+        "Instructor" : "lecturer",
+        "Student" : "student",
+        "Teaching Assistant" : "ta"
+      },
+      "portfolio": {
+        "Organizer": "manager",
+        "Participant": "member"
+      },
+      "project": {
+        "Organizer": "leadresearcher",
+        "Participant": "contributor"
+      }
     }
   }
 }

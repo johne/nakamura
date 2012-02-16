@@ -61,16 +61,12 @@ class SisWorldUploader < OaeImportBase
     end
     
     groupProps = {
-      "term" => row[0],
-      "contactName" => row[9],
-      "contactEmail" => row[10],
-      "grouping" => grouping
+      "sakai:term" => row[0],
+      "sakai:contactName" => row[9],
+      "sakai:contactEmail" => row[10],
+      "sakai:grouping" => grouping,
+      "sakai:world-type" => row[8]
     }
-    
-    groupDetails["properties"]["term"] = row[0]
-    groupDetails["properties"]["contactName"] = row[9]
-    groupDetails["properties"]["contactEmail"] = row[10]
-    groupDetails["properties"]["grouping"] = grouping
 
     if (!@customProperties.nil? && @customProperties.count > 1)
         @customProperties.each_with_index {
