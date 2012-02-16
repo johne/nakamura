@@ -1,19 +1,28 @@
 {
   "password" : "admin",
-  "reportEmail" : "testingimport@rsmart.com",
-  "serverUrl" : "http://localhost:8080/",
-  "users.csv" : {
-    "allowUpdate" : false,
-    "skipHeaderRow" : true,
-    "customProperties" : [
-      "testProp1",
-      "testProp2"
-    ]
-  },
   "remove-users.csv" : {
     "skipHeaderRow" : false
   },
-  "worlds.csv" : {
+  "reportEmail" : "jde-import@dovevalleyapps.com",
+  "serverUrl" : "http://localhost:8080/",
+  "users.csv" : {
+    "allowUpdate" : false,
+    "customProperties" : [
+      "testProp1",
+      "testProp2"
+    ],
     "skipHeaderRow" : true
+  },
+  "worlds.csv" : {
+    "customProperties" : [
+      "grouping"
+    ],
+    "globalGrouping" : "grouped",
+    "skipHeaderRow" : false,
+    "worldTemplateMap" : {
+      "course" : "/var/templates/worlds/course/basic-course",
+      "portfolio" : "/var/templates/worlds/group/simple-group",
+      "project" : "/var/templates/worlds/research/research-project"
+    }
   }
 }
