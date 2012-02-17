@@ -45,7 +45,7 @@ class SisWorldUploader < OaeImportBase
       groupCacheEntry = {
         "group"=> group,
         "groupDetails"=> groupDetails,
-        "roles"=> {}
+        "roles"=> Hash.new()
       }
     end
     
@@ -58,12 +58,12 @@ class SisWorldUploader < OaeImportBase
     roleArray = groupCacheEntry["roles"][role]
     
     if (roleArray.nil?)
-      roleArray = []
+      roleArray = Array.new()
     end
     
     user = row[0];
-    
-    roleArray << row[0].to_s
+
+    roleArray << user
     
     # cache all the stuff away for now
     groupCacheEntry["roles"][role] = roleArray
@@ -99,31 +99,32 @@ class SisWorldUploader < OaeImportBase
   def processRole(roleId, group, groupCacheEntry) 
     newRoleUsers = groupCacheEntry["roles"][roleId]
     
-    roleGroupId = group.name + "-" + roleId
+    if (!newRoleUsers.nil?)
+      roleGroupId = group.name + "-" + roleId
     
-    roleGroup = Group.new(roleGroupId)
+      roleGroup = Group.new(roleGroupId)
     
-    currentMembers = roleGroup.members(@server)
+      currentMembers = roleGroup.members(@server)
     
-    if (currentMembers.count > 0) 
-      leftOver = currentMembers - newRoleUsers
+      if (currentMembers.count > 0) 
+        leftOver = currentMembers - newRoleUsers
     
-      leftOver.each do |removeUser|
-        roleGroup.remove_member(@server, removeUser)
+        leftOver.each do |removeUser|
+          roleGroup.remove_member(@server, removeUser)
+        end
+    
+        @updated += leftOver.count
+      end 
+    
+      if (currentMembers.count > 0)
+        newRoleUsers = newRoleUsers - currentMembers
       end
     
-      @updated += leftOver.count
-    end 
-    
-    if (currentMembers.count > 0)
-      newRoleUsers = newRoleUsers - currentMembers
+      newRoleUsers.each do |addUser|
+        roleGroup.add_member_viewer(@server, addUser)
+        @created += 1
+      end
     end
-    
-    puts newRoleUsers
-    
-    roleGroup.add_members(@server, newRoleUsers)
-
-    @created += newRoleUsers.count
   end
   
   def processServerProps(serverInfoFile)

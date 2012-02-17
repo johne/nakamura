@@ -105,7 +105,11 @@ class SisUserUploader < OaeImportBase
     end
 
     def expectedColumns
-      7 + customProperties.count
+      if (!customProperties.nil?)
+        return 7 + customProperties.count
+      else 
+        return 7
+      end
     end
 
 end
